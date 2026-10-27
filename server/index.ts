@@ -541,7 +541,11 @@ app.get('/api/admin/metrics', requireAdminAuth, (_req: Request, res: Response) =
   res.json({ metrics: healthMetrics });
 });
 
-// Start Server
-app.listen(PORT, () => {
-  console.log(`PlanSutra AI server listening on port ${PORT}`);
-});
+// Start Server locally (Vercel serverless functions export app handler without app.listen)
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`PlanSutra AI server listening on port ${PORT}`);
+  });
+}
+
+export default app;

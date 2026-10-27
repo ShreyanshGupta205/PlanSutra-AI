@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ivory-50: #FAF8F5;
+  --color-ivory-100: #F5EFEB;
+  --color-ivory-200: #EBE2D8;
+  --color-ivory-300: #DDD1C2;
+  --color-ivory-400: #CAB8A2;
+  --color-ivory-500: #B59E83;
+
+  --color-navy-50: #F0F4F8;
+  --color-navy-100: #D9E2EC;
+  --color-navy-200: #BCCCDC;
+  --color-navy-700: #334E68;
+  --color-navy-800: #1E293B;
+  --color-navy-900: #0F172A;
+  --color-navy-950: #0A0F1D;
+
+  --color-emerald-50: #ECFDF5;
+  --color-emerald-100: #D1FAE5;
+  --color-emerald-200: #A7F3D0;
+  --color-emerald-500: #10B981;
+  --color-emerald-600: #059669;
+  --color-emerald-700: #047857;
+  --color-emerald-800: #065F46;
+  --color-emerald-900: #064E3B;
+
+  --color-marigold-50: #FFFBEB;
+  --color-marigold-100: #FEF3C7;
+  --color-marigold-200: #FDE68A;
+  --color-marigold-400: #FBBF24;
+  --color-marigold-500: #F59E0B;
+  --color-marigold-600: #D97706;
+  --color-marigold-700: #B45309;
+
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+}
+
+@layer base {
+  body {
+    background-color: #FAF8F5;
+    color: #0F172A;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Accessible focus styling */
+  :focus-visible {
+    outline: 2px solid #059669;
+    outline-offset: 2px;
+  }
+}
+
+/* Print styling for Event Plan & Day-of Run Sheet */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  .print-break-inside-avoid {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .print-page-break {
+    page-break-before: always;
+    break-before: page;
+  }
+
+  /* Ensure card borders and background colors appear in print */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+
+/* Custom smooth transitions */
+.transition-smooth {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Badge pulse animation */
+@keyframes softPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.03); }
+}
+
+.animate-soft-pulse {
+  animation: softPulse 2.5s infinite ease-in-out;
+}
+
+/* Reduced-motion support (WCAG 2.2 AA) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
